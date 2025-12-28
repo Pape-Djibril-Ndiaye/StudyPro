@@ -2,35 +2,24 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Gestion des élèves</title>
+  <title>Suivi scolaire</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Gestion des élèves</h1>
+  <div class="auth-card">
+    <h2>📘 Suivi scolaire</h2>
+    <p>Connecte-toi pour suivre ta progression</p>
 
-  <form id="eleveForm">
-    <input type="text" id="nom" placeholder="Nom" required>
-    <input type="text" id="prenom" placeholder="Prénom" required>
-    <input type="text" id="classe" placeholder="Classe" required>
-    <input type="number" id="moyenne" placeholder="Moyenne" step="0.01" required>
-    <button type="submit">Ajouter élève</button>
-  </form>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Mot de passe">
 
-  <h2>Liste des élèves</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Classe</th>
-        <th>Moyenne</th>
-      </tr>
-    </thead>
-    <tbody id="listeEleves"></tbody>
-  </table>
+    <button onclick="login()">Connexion</button>
+    <button class="secondary" onclick="register()">Inscription</button>
 
-  <!-- Firebase -->
+    <p id="message"></p>
+  </div>
+
   <script type="module" src="script.js"></script>
 </body>
 </html>
