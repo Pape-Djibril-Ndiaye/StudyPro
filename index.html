@@ -1,185 +1,179 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BacExcellence - Organisateur Personnel 🎓</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyPro-Sénégal – Organisateur Personnel 🎓</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Page de connexion -->
-    <div id="authPage" class="auth-page">
-        <div class="auth-container">
-            <h1 class="auth-title">🎓 StudyPro-Sénégal</h1>
-            <p class="auth-subtitle">Votre organisateur personnel pour réussir les études</p>
-            
-            <div class="auth-tabs">
-                <button class="auth-tab active" data-auth="login">Connexion</button>
-                <button class="auth-tab" data-auth="signup">Inscription</button>
-            </div>
-            
-            <!-- Formulaire de connexion -->
-            <div id="loginForm" class="auth-form active">
-                <input type="email" id="loginEmail" placeholder="Email" class="auth-input">
-                <input type="password" id="loginPassword" placeholder="Mot de passe" class="auth-input">
-                <button id="loginBtn" class="auth-button">Se connecter</button>
-                <p class="auth-error" id="loginError"></p>
-            </div>
-            
-            <!-- Formulaire d'inscription -->
-            <div id="signupForm" class="auth-form">
-                <input type="text" id="signupName" placeholder="Nom complet" class="auth-input">
-                <input type="email" id="signupEmail" placeholder="Email" class="auth-input">
-                <input type="password" id="signupPassword" placeholder="Mot de passe (min 6 caractères)" class="auth-input">
-                <button id="signupBtn" class="auth-button">Créer mon compte</button>
-                <p class="auth-error" id="signupError"></p>
-            </div>
+
+  <!-- Page d'authentification -->
+  <main id="authPage" class="auth-page">
+    <section class="auth-container">
+      <h1 class="auth-title">🎓 StudyPro-Sénégal</h1>
+      <p class="auth-subtitle">Votre organisateur personnel pour réussir les études</p>
+      
+      <!-- Onglets Connexion / Inscription -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-auth="login">Connexion</button>
+        <button class="auth-tab" data-auth="signup">Inscription</button>
+      </div>
+      
+      <!-- Formulaire de connexion -->
+      <form id="loginForm" class="auth-form active">
+        <input type="email" id="loginEmail" placeholder="Email" class="auth-input" required>
+        <input type="password" id="loginPassword" placeholder="Mot de passe" class="auth-input" required>
+        <button type="submit" id="loginBtn" class="auth-button">Se connecter</button>
+        <p class="auth-error" id="loginError"></p>
+      </form>
+      
+      <!-- Formulaire d'inscription -->
+      <form id="signupForm" class="auth-form">
+        <input type="text" id="signupName" placeholder="Nom complet" class="auth-input" required>
+        <input type="email" id="signupEmail" placeholder="Email" class="auth-input" required>
+        <input type="password" id="signupPassword" placeholder="Mot de passe (min 6 caractères)" class="auth-input" required>
+        <button type="submit" id="signupBtn" class="auth-button">Créer mon compte</button>
+        <p class="auth-error" id="signupError"></p>
+      </form>
+    </section>
+  </main>
+
+  <!-- Application principale -->
+  <main id="mainApp" class="main-app hidden">
+    <section class="container">
+
+      <!-- En-tête avec moyenne générale -->
+      <header class="header-card">
+        <div class="header-top">
+          <div>
+            <h1>🎓 StudyPro-Sénégal</h1>
+            <p class="subtitle">Bienvenue <span id="userName"></span> !</p>
+          </div>
+          <button id="logoutBtn" class="btn-logout">Déconnexion</button>
         </div>
-    </div>
 
-    <!-- Application principale (cachée au départ) -->
-    <div id="mainApp" class="main-app hidden">
-        <div class="container">
-            <!-- En-tête avec moyenne générale -->
-            <div class="header-card">
-                <div class="header-top">
-                    <div>
-                        <h1>🎓 StudyPro-Sénégal</h1>
-                        <p class="subtitle">Bienvenue <span id="userName"></span> !</p>
-                    </div>
-                    <button id="logoutBtn" class="btn-logout">Déconnexion</button>
-                </div>
-                <div class="average-section">
-                    <div class="average-header">
-                        <span class="average-label">Moyenne Générale</span>
-                        <span class="average-value" id="averageValue">0/100</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="averageProgress"></div>
-                    </div>
-                    <p class="motivation-message" id="motivationMessage"></p>
-                </div>
-            </div>
-
-            <!-- Navigation par onglets -->
-            <div class="tabs">
-                <button class="tab-button active" data-tab="dashboard">
-                    <span class="tab-icon">📊</span>
-                    Tableau de bord
-                </button>
-                <button class="tab-button" data-tab="subjects">
-                    <span class="tab-icon">📚</span>
-                    Matières
-                </button>
-                <button class="tab-button" data-tab="tasks">
-                    <span class="tab-icon">📚</span>
-                    Tâches
-                </button>
-                <button class="tab-button" data-tab="goals">
-                    <span class="tab-icon">📚</span>
-                    Objectifs
-                </button>
-            </div>
-
-            <!-- Contenu des onglets -->
-            <div id="dashboard" class="tab-content active">
-                <div class="dashboard-grid">
-                    <div class="card">
-                        <h2 class="card-title">📈 Mes Matières</h2>
-                        <div id="dashboardSubjects"></div>
-                    </div>
-                    <div class="card">
-                        <h2 class="card-title">📚 Tâches Récentes</h2>
-                        <div id="dashboardTasks"></div>
-                    </div>
-                    <div class="card card-full">
-                        <h2 class="card-title">📚 Mes Objectifs</h2>
-                        <div id="dashboardGoals"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="subjects" class="tab-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Mes Matières</h2>
-                        <button class="btn btn-add" id="btnAddSubject">
-                            <span>+</span> Ajouter
-                        </button>
-                    </div>
-                    <div id="addSubjectForm" class="add-form hidden">
-                        <div class="form-grid">
-                            <input type="text" id="newSubjectName" placeholder="Nom de la matière" class="input">
-                            <input type="number" id="newSubjectCoef" placeholder="Coefficient" class="input">
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-success" id="confirmAddSubject">Ajouter</button>
-                            <button class="btn btn-danger" id="cancelAddSubject">Annuler</button>
-                        </div>
-                    </div>
-                    <div id="subjectsList"></div>
-                </div>
-            </div>
-
-            <div id="tasks" class="tab-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Mes Tâches</h2>
-                        <button class="btn btn-add" id="btnAddTask">
-                            <span>+</span> Ajouter
-                        </button>
-                    </div>
-                    <div id="addTaskForm" class="add-form hidden">
-                        <div class="form-column">
-                            <input type="text" id="newTaskTitle" placeholder="Titre de la tâche" class="input">
-                            <select id="newTaskSubject" class="input">
-                                <option value="">Choisir une matière</option>
-                            </select>
-                            <select id="newTaskPriority" class="input">
-                                <option value="haute">Priorité haute</option>
-                                <option value="moyenne" selected>Priorité moyenne</option>
-                                <option value="basse">Priorité basse</option>
-                            </select>
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-success" id="confirmAddTask">Ajouter</button>
-                            <button class="btn btn-danger" id="cancelAddTask">Annuler</button>
-                        </div>
-                    </div>
-                    <div id="tasksList"></div>
-                </div>
-            </div>
-
-            <div id="goals" class="tab-content">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Mes Objectifs</h2>
-                        <button class="btn btn-add" id="btnAddGoal">
-                            <span>+</span> Ajouter
-                        </button>
-                    </div>
-                    <div id="addGoalForm" class="add-form hidden">
-                        <div class="form-grid">
-                            <input type="text" id="newGoalTitle" placeholder="Titre de l'objectif" class="input">
-                            <input type="number" id="newGoalTarget" placeholder="Cible (nombre)" class="input">
-                        </div>
-                        <div class="form-actions">
-                            <button class="btn btn-success" id="confirmAddGoal">Ajouter</button>
-                            <button class="btn btn-danger" id="cancelAddGoal">Annuler</button>
-                        </div>
-                    </div>
-                    <div id="goalsList"></div>
-                </div>
-            </div>
+        <div class="average-section">
+          <div class="average-header">
+            <span class="average-label">Moyenne Générale</span>
+            <span class="average-value" id="averageValue">0/100</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="averageProgress"></div>
+          </div>
+          <p class="motivation-message" id="motivationMessage"></p>
         </div>
-    </div>
+      </header>
 
-    <!-- Chargement Firebase depuis CDN -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-    
-    <!-- Notre script JavaScript -->
-    <script src="script.js"></script>
+      <!-- Navigation par onglets -->
+      <nav class="tabs">
+        <button class="tab-button active" data-tab="dashboard">📊 Tableau de bord</button>
+        <button class="tab-button" data-tab="subjects">📚 Matières</button>
+        <button class="tab-button" data-tab="tasks">📝 Tâches</button>
+        <button class="tab-button" data-tab="goals">🎯 Objectifs</button>
+      </nav>
+
+      <!-- Contenu des onglets -->
+      <section id="dashboard" class="tab-content active">
+        <div class="dashboard-grid">
+          <article class="card">
+            <h2 class="card-title">📈 Mes Matières</h2>
+            <div id="dashboardSubjects"></div>
+          </article>
+          <article class="card">
+            <h2 class="card-title">📚 Tâches Récentes</h2>
+            <div id="dashboardTasks"></div>
+          </article>
+          <article class="card card-full">
+            <h2 class="card-title">🎯 Mes Objectifs</h2>
+            <div id="dashboardGoals"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Matières -->
+      <section id="subjects" class="tab-content">
+        <div class="card">
+          <header class="card-header">
+            <h2 class="card-title">Mes Matières</h2>
+            <button class="btn btn-add" id="btnAddSubject">➕ Ajouter</button>
+          </header>
+
+          <form id="addSubjectForm" class="add-form hidden">
+            <div class="form-grid">
+              <input type="text" id="newSubjectName" placeholder="Nom de la matière" class="input" required>
+              <input type="number" id="newSubjectCoef" placeholder="Coefficient" class="input" required>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" id="confirmAddSubject">Ajouter</button>
+              <button type="button" class="btn btn-danger" id="cancelAddSubject">Annuler</button>
+            </div>
+          </form>
+          <div id="subjectsList"></div>
+        </div>
+      </section>
+
+      <!-- Tâches -->
+      <section id="tasks" class="tab-content">
+        <div class="card">
+          <header class="card-header">
+            <h2 class="card-title">Mes Tâches</h2>
+            <button class="btn btn-add" id="btnAddTask">➕ Ajouter</button>
+          </header>
+
+          <form id="addTaskForm" class="add-form hidden">
+            <div class="form-column">
+              <input type="text" id="newTaskTitle" placeholder="Titre de la tâche" class="input" required>
+              <select id="newTaskSubject" class="input" required>
+                <option value="">Choisir une matière</option>
+              </select>
+              <select id="newTaskPriority" class="input">
+                <option value="haute">Priorité haute</option>
+                <option value="moyenne" selected>Priorité moyenne</option>
+                <option value="basse">Priorité basse</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" id="confirmAddTask">Ajouter</button>
+              <button type="button" class="btn btn-danger" id="cancelAddTask">Annuler</button>
+            </div>
+          </form>
+          <div id="tasksList"></div>
+        </div>
+      </section>
+
+      <!-- Objectifs -->
+      <section id="goals" class="tab-content">
+        <div class="card">
+          <header class="card-header">
+            <h2 class="card-title">Mes Objectifs</h2>
+            <button class="btn btn-add" id="btnAddGoal">➕ Ajouter</button>
+          </header>
+
+          <form id="addGoalForm" class="add-form hidden">
+            <div class="form-grid">
+              <input type="text" id="newGoalTitle" placeholder="Titre de l'objectif" class="input" required>
+              <input type="number" id="newGoalTarget" placeholder="Cible (nombre)" class="input" required>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success" id="confirmAddGoal">Ajouter</button>
+              <button type="button" class="btn btn-danger" id="cancelAddGoal">Annuler</button>
+            </div>
+          </form>
+          <div id="goalsList"></div>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
 </body>
 </html>
