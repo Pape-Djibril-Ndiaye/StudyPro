@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #1e1b4b 0%, #581c87 50%, #9f1239 100%);
+    background: linear-gradient(135deg, #2360a5 0%, #06bedf 50%, #0b2c9b 100%);
     min-height: 100vh;
 }
 
@@ -71,7 +71,7 @@ body {
 
 .auth-tab.active {
     background: white;
-    color: #581c87;
+    color: #210d30;
     border-color: white;
 }
 
@@ -102,7 +102,7 @@ body {
 
 .auth-button {
     padding: 15px;
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #084fc0 0%, #6767dd 100%);
     color: white;
     border: none;
     border-radius: 10px;
@@ -155,7 +155,7 @@ body {
 }
 
 .header-card h1 {
-    color: white;
+    color: rgb(250, 250, 250);
     font-size: 2.5rem;
     margin-bottom: 5px;
 }
@@ -208,7 +208,7 @@ body {
 .progress-bar {
     width: 100%;
     height: 12px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(248, 241, 241, 0.3);
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 15px;
@@ -222,7 +222,7 @@ body {
 }
 
 .motivation-message {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(12, 42, 141, 0.9);
     text-align: center;
     font-weight: 500;
     font-size: 1rem;
