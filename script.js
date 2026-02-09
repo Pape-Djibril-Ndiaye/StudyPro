@@ -550,3 +550,5 @@ function updateGoalsList() {
         </div>
     ` : '<p class="empty-message">Aucun objectif défini</p>';
 }
+
+   
